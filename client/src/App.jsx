@@ -48,7 +48,7 @@ function App() {
       return await res.json();
     });
     const detailedList = await Promise.all(poiPromises);
-    setFoundPOIs(detailedList.filter(poi => poi.name.length > 0));
+    setFoundPOIs(detailedList.filter(poi => poi?.name?.length > 0));
   }
 
   useEffect(() => {

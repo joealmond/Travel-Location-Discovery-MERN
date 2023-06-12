@@ -17,9 +17,10 @@ function VisitedPoisList () {
             )
     }, [])
 
-    return <LocationCard
-            POIList={visitedPois}
-            />
+    return (<>{visitedPois && <LocationCard
+             POIList={visitedPois}
+            />}
+            </>)
 }
 
 export default VisitedPoisList

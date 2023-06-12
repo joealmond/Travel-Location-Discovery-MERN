@@ -2,10 +2,10 @@ POST http://localhost:3000/visited
 Content-Type: application/json
 
 {
-    "xid": "745678io",
+    "xid": "444",
     "image": "url",
-    "name": "Piramyd",
-    "city": "Cairo",
+    "name": "Leaning Tower",
+    "city": "Ózd",
     "countryCode": "444",
     "kinds": "architecture, heritage",
     "rating": 10,
@@ -15,3 +15,7 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/visited/3
+
+###
+
+GET http://localhost:3000/visited
