@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import navStyles from "./Nav.module.css";
 import Search from "./Search";
 
+// eslint-disable-next-line react/prop-types
 function Nav({ onFormSubmit, setSearchInput, searchInput, setCurrentPage }) {
   return (
     <nav className={navStyles.navHeader}>
@@ -8,9 +10,9 @@ function Nav({ onFormSubmit, setSearchInput, searchInput, setCurrentPage }) {
         <p>Cool Travel</p>
       </div>
       <div></div>
-      <div onClick={() => setCurrentPage("visited")}>
+      <Link to="visited"><div onClick={() => setCurrentPage("visited")}>
         <p>Visited</p>
-      </div>
+      </div></Link>
       <div onClick={() => setCurrentPage("wishlist")}>
         <p>Wish-list</p>
       </div>
