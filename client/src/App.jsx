@@ -4,7 +4,7 @@ import LocationCard from './components/LocationCard.jsx'
 import Nav from './components/Nav.jsx'; // had to import app for testing Nav component
 import Search from './components/Search'; // had to import app for testing Search component
 import LocationDetailsPage from './components/LocationDetailsPage';
-import VisitedPOIList from './components/VisitedPOIList';
+//import VisitedPOIList from './components/VisitedPOIList';
 import { Link } from 'react-router-dom';
 function App() {
 
@@ -159,7 +159,7 @@ function App() {
     <>
     {currentPage === 'landing' && 
       <>
-      <Link to='visited'><button onClick={(e)=>{e.preventDefault(); }}></button></Link>
+      <Link to='visited'><button>visited</button></Link>
         {/* Here is the new search component:*/}
         <Search handleSearch={handleSearch} setSearchInput={setSearchInput} searchInput={searchInput} />
         {
@@ -200,14 +200,14 @@ function App() {
       </>
 
     }
-    {currentPage === 'visited' && 
+    {/* {currentPage === 'visited' && 
       <>
       
       <VisitedPOIList
       
       />
       </>
-    }
+    } */}
     {currentPage === 'wishlist' && 
       <>
       
