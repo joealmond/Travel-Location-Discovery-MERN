@@ -5,6 +5,7 @@ import Nav from './components/Nav.jsx'; // had to import app for testing Nav com
 import Search from './components/Search'; // had to import app for testing Search component
 import LocationDetailsPage from './components/LocationDetailsPage';
 import VisitedPOIList from './components/VisitedPOIList';
+import { Link } from 'react-router-dom';
 function App() {
 
   const [searchInput, setSearchInput] = useState('');
@@ -158,6 +159,7 @@ function App() {
     <>
     {currentPage === 'landing' && 
       <>
+      <Link to='visited'><button onClick={(e)=>{e.preventDefault(); }}></button></Link>
         {/* Here is the new search component:*/}
         <Search handleSearch={handleSearch} setSearchInput={setSearchInput} searchInput={searchInput} />
         {
