@@ -1,8 +1,14 @@
 /* eslint-disable react/prop-types */
+import React, { useState, useEffect } from 'react';
 
 import LeafletMap from "./LeafletMap";
 
 export default function LocationDetailsPage({details,setCurrentPage}) {
+  const [showMap, setShowMap] = useState(false)
+
+  function handleShowMap(){
+    setShowMap(!showMap)
+  }
   console.log(details)
   let img = undefined;
   if(details.preview){
@@ -22,7 +28,17 @@ export default function LocationDetailsPage({details,setCurrentPage}) {
             {details.name ? <h1>{details.name}</h1> : <h1>No Name</h1>}
             {details.address.country ?<div>{details.address.country}</div> : <div>No Country name</div>}
             {details.address.city ? <div>{details.address.city}</div> : <div>No City Name</div>}
-            {details.wikipedia_extracts ? <div>{details.wikipedia_extracts.text}</div> : <section id="country-map"><LeafletMap details={details}/></section>}
+            {details.wikipedia_extracts  ? <>
+              {!showMap && <button onClick={handleShowMap}>Show Map</button>}
+              {showMap && <button onClick={handleShowMap}>Show Description</button>}
+              {!showMap && details.wikipedia_extracts && <div>{details.wikipedia_extracts.text}</div>}
+              {showMap && <section id="country-map"><LeafletMap details={details}/></section>}
+            </>
+                                        : 
+            <section id="country-map"><LeafletMap details={details}/></section>
+
+                                        }
+
             
         </div>
                 
