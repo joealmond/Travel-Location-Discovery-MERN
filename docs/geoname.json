@@ -1,0 +1,14 @@
+// GET /{lang}/places/geoname
+// GET "https://api.opentripmap.com/0.1/en/places/geoname?name=budapest&apikey=5ae2e3f221c38a28845f05b67591d488d91267af9454979e24c2fed5"
+
+// Response:
+{
+    "name": "budapest",
+    "country": "HU",
+    "lat": 47.49835,
+    "lon": 19.04045,
+    "population": 1741041,
+    "timezone": "Europe/Budapest",
+    "status": "OK"
+  }
+

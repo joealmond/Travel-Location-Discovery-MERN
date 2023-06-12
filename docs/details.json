@@ -1,0 +1,52 @@
+// GET /{lang}​/places​/xid​/{xid}
+// GET "https://api.opentripmap.com/0.1/en/places/xid/R3360096?apikey=5ae2e3f221c38a28845f05b67591d488d91267af9454979e24c2fed5"
+
+{
+  "xid": "R3360096",
+  "name": "Chain Bridge Palace",
+  "address": {
+    "city": "Budapest",
+    "road": "Fő utca",
+    "region": "Közép-Magyarország",
+    "suburb": "Víziváros",
+    "country": "Magyarország",
+    "postcode": "1011",
+    "country_code": "hu",
+    "house_number": "1",
+    "city_district": "1. kerület"
+  },
+  "rate": "3h",
+  "osm": "relation/3360096",
+  "bbox": {
+    "lon_min": 19.040291,
+    "lon_max": 19.040859,
+    "lat_min": 47.498761,
+    "lat_max": 47.499214
+  },
+  "wikidata": "Q1160078",
+  "kinds": "architecture,historic_architecture,interesting_places,other_buildings_and_structures",
+  "sources": {
+    "geometry": "osm",
+    "attributes": [
+      "osm",
+      "wikidata"
+    ]
+  },
+  "otm": "https://opentripmap.com/en/card/R3360096",
+  "wikipedia": "https://hu.wikipedia.org/wiki/L%C3%A1nch%C3%ADd%20Palota",
+  "image": "https://commons.wikimedia.org/wiki/File:Clark_%C3%81d%C3%A1m_t%C3%A9r_-_2012.12.03.JPG",
+  "preview": {
+    "source": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Clark_%C3%81d%C3%A1m_t%C3%A9r_-_2012.12.03.JPG/400px-Clark_%C3%81d%C3%A1m_t%C3%A9r_-_2012.12.03.JPG",
+    "height": 300,
+    "width": 400
+  },
+  "wikipedia_extracts": {
+    "title": "hu:Lánchíd Palota",
+    "text": "A Lánchíd Palota Budapest egyik ikonikus épülete. Az épület Budapest szimbolikus közepén, a Lánchíd lábánál, a „0” kilométerkőnél, a Fő utca 1. szám alatt található. A Clark Ádám tér egyetlen még álló eredeti épülete.",
+    "html": "<p>A <b>Lánchíd Palota</b> Budapest egyik ikonikus épülete. Az épület Budapest szimbolikus közepén, a Lánchíd lábánál, a „0” kilométerkőnél, a Fő utca 1. szám alatt található. A Clark Ádám tér egyetlen még álló eredeti épülete.</p>"
+  },
+  "point": {
+    "lon": 19.040424346923828,
+    "lat": 47.49900436401367
+  }
+}

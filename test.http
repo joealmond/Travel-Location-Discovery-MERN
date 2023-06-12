@@ -1,0 +1,17 @@
+POST http://localhost:3000/visited 
+Content-Type: application/json
+
+{
+    "xid": "745678io",
+    "image": "url",
+    "name": "Piramyd",
+    "city": "Cairo",
+    "countryCode": "444",
+    "kinds": "architecture, heritage",
+    "rating": 10,
+    "listType": "visited"
+}
+
+###
+
+DELETE http://localhost:3000/visited/3
