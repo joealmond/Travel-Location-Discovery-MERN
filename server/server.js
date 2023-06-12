@@ -37,6 +37,15 @@ app.use(function (req, res, next) {
     }
   })
 
+  app.get('/wished', async (req, res) => {
+    try {
+        const wishedPois = await VisitedPOI.find({listType: "wished"});
+        res.send(wishedPois)
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
   app.post('/visited', (req, res) => {
 
     const xid = req.body.xid

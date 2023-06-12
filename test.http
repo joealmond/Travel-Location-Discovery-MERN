@@ -2,14 +2,14 @@ POST http://localhost:3000/visited
 Content-Type: application/json
 
 {
-    "xid": "444",
+    "xid": "666",
     "image": "url",
-    "name": "Leaning Tower",
-    "city": "Ózd",
+    "name": "Hell",
+    "city": "Budapest",
     "countryCode": "444",
     "kinds": "architecture, heritage",
     "rating": 10,
-    "listType": "visited"
+    "listType": "wished"
 }
 
 ###

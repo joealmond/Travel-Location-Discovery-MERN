@@ -160,6 +160,7 @@ function App() {
     {currentPage === 'landing' && 
       <>
       <Link to='visited'><button>visited</button></Link>
+      <Link to='wished'><button>Wished</button></Link>
         <nav className='navHeader'>
           <div>
             <Search 
