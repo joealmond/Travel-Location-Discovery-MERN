@@ -19,6 +19,7 @@ function App() {
   // 'wishlist' - a page with a list of the wishlisted pages
   // 'details' - a page with al the information about the selected POI
   const [selectedPOI, setSeclectedPOI] = useState(null);
+  const [visitedBD, setVisitedDB] = useState(null);
   
 
   async function handleSearch(e) {
@@ -48,6 +49,7 @@ function App() {
     });
     const detailedList = await Promise.all(poiPromises);
     setFoundPOIs(detailedList.filter(poi => poi.name.length > 0));
+    console.log(detailedList);
   }
 
   useEffect(() => {
@@ -102,22 +104,24 @@ function App() {
       getDetailedPOIs(radius);
     }
 
-  function savePOIToServer () {
-    const dummyPOI = {
-      xid: "22",
-      image: "url",
-      name: "lol",
-      city: "paris",
-      countryCode: "4",
-      kinds: "good",
-      rating: 3,
-      listType: "visited"
+  function savePOIToServer (feature, listType, rating) {
+    const image = 'https://images.pexels.com/photos/942317/pexels-photo-942317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+
+    const POItoSave = {
+      xid: feature.xid,
+      image: feature.preview ? feature.preview.source : image,
+      name: feature.name,
+      city: feature.address.city,
+      countryCode: feature.address.country_code,
+      kinds: feature.kinds,
+      rating: rating,
+      listType: listType
     }
     fetch("http://localhost:3000/visited", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       // enter into the stringify the object to be saved
-      body: JSON.stringify(dummyPOI),
+      body: JSON.stringify(POItoSave),
     })
       .then((res) => res.json())
       .then((res) => {
@@ -125,6 +129,12 @@ function App() {
       })
       .catch((err) => console.log(err));
   }
+
+  useEffect(() => {
+    setVisitedDB(showSavedPOIs());
+  }, [])
+
+  console.log(visitedBD);
 
   async function showSavedPOIs () {
     try {
@@ -137,6 +147,7 @@ function App() {
       const result = await response.json();
       console.log(result);
       //setThisToAState(result);
+      return result;
     } catch (err) {
       console.log(err);
     }
@@ -161,15 +172,36 @@ function App() {
         {/* Here is the new search component:*/}
         <Search handleSearch={handleSearch} setSearchInput={setSearchInput} searchInput={searchInput} />
         {
-        foundPOIs ? <LocationCard POIList = {foundPOIs} setCurrentPage={setCurrentPage} setSeclectedPOI = {setSeclectedPOI}/>
+        foundPOIs ? <LocationCard 
+          POIList = {foundPOIs}
+          setCurrentPage={setCurrentPage}
+          setSeclectedPOI = {setSeclectedPOI}
+          onSavePOIToDB = {savePOIToServer}
+          onDeletePOIFromDB = {deleteSavedPOI}
+          onListOfVisited = {showSavedPOIs}
+          visitedDB = {visitedBD}
+          />
                   : <>
                   {
         recommendedPOIs ? <LocationCard 
-          POIList = {recommendedPOIs} setCurrentPage={setCurrentPage} setSeclectedPOI = {setSeclectedPOI}
+          POIList = {recommendedPOIs}
+          setCurrentPage={setCurrentPage}
+          setSeclectedPOI = {setSeclectedPOI}
+          onSavePOIToDB = {savePOIToServer}
+          onDeletePOIFromDB = {deleteSavedPOI}
+          onListOfVisited = {showSavedPOIs}
+          visitedDB = {visitedBD}
         />
         :
         randomPOIs &&
-        <LocationCard POIList={randomPOIs}  setCurrentPage={setCurrentPage} setSeclectedPOI = {setSeclectedPOI}
+        <LocationCard
+          POIList={randomPOIs}
+          setCurrentPage={setCurrentPage}
+          setSeclectedPOI = {setSeclectedPOI}
+          onSavePOIToDB = {savePOIToServer}
+          onDeletePOIFromDB = {deleteSavedPOI}
+          onListOfVisited = {showSavedPOIs}
+          visitedDB = {visitedBD}
         />
       }
                   </>
@@ -194,6 +226,10 @@ function App() {
         POIList={foundPOIs} 
         setCurrentPage={setCurrentPage} 
         setSeclectedPOI = {setSeclectedPOI}
+        onSavePOIToDB = {savePOIToServer}
+        onDeletePOIFromDB = {deleteSavedPOI}
+        onListOfVisited = {showSavedPOIs}
+        visitedDB = {visitedBD}
         />
       </>
 
