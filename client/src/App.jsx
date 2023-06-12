@@ -158,8 +158,14 @@ function App() {
     <>
     {currentPage === 'landing' && 
       <>
-        {/* Here is the new search component:*/}
-        <Search handleSearch={handleSearch} setSearchInput={setSearchInput} searchInput={searchInput} />
+        <nav className='navHeader'>
+          <div>
+            <Search 
+              onFormSubmit={handleSearch}
+              setSearchInput={setSearchInput}
+              searchInput={searchInput} />
+          </div>
+        </nav>
         {
         foundPOIs ? <LocationCard POIList = {foundPOIs} setCurrentPage={setCurrentPage} setSeclectedPOI = {setSeclectedPOI}/>
                   : <>
