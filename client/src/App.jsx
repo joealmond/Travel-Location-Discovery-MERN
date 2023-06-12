@@ -4,7 +4,8 @@ import LocationCard from './components/LocationCard.jsx'
 import Nav from './components/Nav.jsx'; // had to import app for testing Nav component
 import Search from './components/Search'; // had to import app for testing Search component
 import LocationDetailsPage from './components/LocationDetailsPage';
-import VisitedPOIList from './components/VisitedPOIList';
+//import VisitedPOIList from './components/VisitedPOIList';
+import { Link } from 'react-router-dom';
 function App() {
 
   const [searchInput, setSearchInput] = useState('');
@@ -158,6 +159,7 @@ function App() {
     <>
     {currentPage === 'landing' && 
       <>
+      <Link to='visited'><button>visited</button></Link>
         <nav className='navHeader'>
           <div>
             <Search 
@@ -204,14 +206,14 @@ function App() {
       </>
 
     }
-    {currentPage === 'visited' && 
+    {/* {currentPage === 'visited' && 
       <>
       
       <VisitedPOIList
       
       />
       </>
-    }
+    } */}
     {currentPage === 'wishlist' && 
       <>
       
