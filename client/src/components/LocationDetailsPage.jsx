@@ -4,7 +4,9 @@ import React, { useState, useEffect } from 'react';
 import LeafletMap from "./LeafletMap";
 
 export default function LocationDetailsPage({details,setCurrentPage}) {
-  const [showMap, setShowMap] = useState(false)
+  const [showMap, setShowMap] = useState(false);
+
+  console.log(details);
 
   function handleShowMap(){
     setShowMap(!showMap)

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import LocationDetailsPage from "./LocationDetailsPage";
 export default function VisitedLocationCard({onDelete, visitedDB}) {
   const [visited, setVisited] = useState(visitedDB);
+  const [selectedPOI, setSelectedPOI] = useState(null);
 
   useEffect(() => {
     setVisited(visitedDB);
@@ -21,24 +22,36 @@ export default function VisitedLocationCard({onDelete, visitedDB}) {
     return resData;
   }
 
+  async function handleSelectedPOI(feature) {
+    const response = await fetch(`https://api.opentripmap.com/0.1/en/places/xid/${feature.xid}?apikey=5ae2e3f221c38a28845f05b6d936af5939a9c23e9f508ba14d82710c`);
+    const selected = await response.json();
+    setSelectedPOI(selected);
+  }
+
   return (    
     <>
-    <div className="location-container">
-      {visited.map((feature, index) =>{
-      return(
-      <div className="location-card" key={index}>
-      <label className="container">Visited
-        <input type="checkbox" checked={true} onChange={() => deleteSavedPOI(feature.xid)}></input>
-        <span className="checkmark"></span>
-      </label>
-        <div id={feature.xid} className='border' onClick={(e)=>{clickForDetails(e.target.parentNode.id)}}>
-          <div>{feature.name}</div>
-          <div>{feature.address && feature.address.city}</div>
-          <div>{feature.address && feature.address.country}</div>
-        </div>
-      </div>)
-    })}
-    </div>
+    {
+      selectedPOI
+        ? <LocationDetailsPage
+        details ={selectedPOI} />
+        : <div className="location-container">
+        {visited.map((feature, index) =>{
+        return(
+        <div className="location-card" key={index}>
+        <label className="container">Visited
+          <input type="checkbox" checked={true} onChange={() => deleteSavedPOI(feature.xid)}></input>
+          <span className="checkmark"></span>
+        </label>
+          <div id={feature.xid} className='border' onClick={() => handleSelectedPOI(feature)}>
+            <div>{feature.name}</div>
+            <div>{feature.address && feature.address.city}</div>
+            <div>{feature.address && feature.address.country}</div>
+          </div>
+        </div>)
+      })}
+      </div>
+    }
+    
     </>   
   )
 }
