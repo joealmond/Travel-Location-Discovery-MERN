@@ -2,10 +2,11 @@
 import React, { useState, useEffect } from 'react';
 
 import LeafletMap from "./LeafletMap";
+import { useNavigate } from 'react-router-dom';
 
 export default function LocationDetailsPage({details,setCurrentPage}) {
   const [showMap, setShowMap] = useState(false);
-
+  const navigate = useNavigate();
   console.log(details);
 
   function handleShowMap(){
@@ -23,7 +24,7 @@ export default function LocationDetailsPage({details,setCurrentPage}) {
 
 
   return (<>
-
+     
     {img ? <div className='details-back'  style={{backgroundImage: `url("${img}")`} }>
         
         <div className='detail-containter'>
