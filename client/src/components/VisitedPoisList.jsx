@@ -1,5 +1,5 @@
 import React from "react";
-import LocationCard from "./LocationCard";
+import VisitedLocationCard from "./VisitedLocationCard";
 import { useEffect, useState } from "react";
 
 const fetchVisitedPois = () => {
@@ -10,6 +10,13 @@ function VisitedPoisList () {
 
     const [visitedPois, setVisitedPois] = useState([])
 
+    function fetchRefreshedVisitedPois() {
+        fetchVisitedPois()
+            .then((pois) => {
+                setVisitedPois(pois);
+            })
+    }
+
     useEffect(() => {
         fetchVisitedPois()
             .then((pois) => 
@@ -17,8 +24,9 @@ function VisitedPoisList () {
             )
     }, [])
 
-    return (<>{visitedPois && <LocationCard
-             POIList={visitedPois}
+    return (<>{visitedPois && <VisitedLocationCard
+             visitedDB={visitedPois}
+             onDelete={fetchRefreshedVisitedPois}
             />}
             </>)
 }
