@@ -15,3 +15,7 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/visited/3
+
+
+###
+GET http://localhost:3000/visited 

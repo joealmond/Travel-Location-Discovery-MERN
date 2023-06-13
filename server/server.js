@@ -69,7 +69,6 @@ app.use(function (req, res, next) {
   })
 
   app.delete('/visited/:id', async (req, res) => {
-    console.log(req.params.id)
     const id = req.params.id;
     const toDelete = await VisitedPOI.findOneAndDelete({xid: id})
     

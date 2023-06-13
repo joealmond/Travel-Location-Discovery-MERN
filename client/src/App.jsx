@@ -49,7 +49,6 @@ function App() {
     });
     const detailedList = await Promise.all(poiPromises);
     setFoundPOIs(detailedList.filter(poi => poi.name.length > 0));
-    console.log(detailedList);
   }
 
   useEffect(() => {
@@ -60,8 +59,6 @@ function App() {
 
     function displayRecommendedPOIsBasedOnUserLocation () {
       const successCallback = (position) => {
-        console.log(position)
-        console.log(position.coords.latitude);
         const lon = position.coords.longitude;
         const lat = position.coords.latitude;
 
@@ -131,10 +128,8 @@ function App() {
   }
 
   useEffect(() => {
-    setVisitedDB(showSavedPOIs());
+    showSavedPOIs();
   }, [])
-
-  console.log(visitedBD);
 
   async function showSavedPOIs () {
     try {
@@ -145,8 +140,7 @@ function App() {
         },
       });
       const result = await response.json();
-      console.log(result);
-      //setThisToAState(result);
+      setVisitedDB(result);
       return result;
     } catch (err) {
       console.log(err);
@@ -178,7 +172,6 @@ function App() {
           setSeclectedPOI = {setSeclectedPOI}
           onSavePOIToDB = {savePOIToServer}
           onDeletePOIFromDB = {deleteSavedPOI}
-          onListOfVisited = {showSavedPOIs}
           visitedDB = {visitedBD}
           />
                   : <>
@@ -189,7 +182,6 @@ function App() {
           setSeclectedPOI = {setSeclectedPOI}
           onSavePOIToDB = {savePOIToServer}
           onDeletePOIFromDB = {deleteSavedPOI}
-          onListOfVisited = {showSavedPOIs}
           visitedDB = {visitedBD}
         />
         :
@@ -200,7 +192,6 @@ function App() {
           setSeclectedPOI = {setSeclectedPOI}
           onSavePOIToDB = {savePOIToServer}
           onDeletePOIFromDB = {deleteSavedPOI}
-          onListOfVisited = {showSavedPOIs}
           visitedDB = {visitedBD}
         />
       }
@@ -228,7 +219,6 @@ function App() {
         setSeclectedPOI = {setSeclectedPOI}
         onSavePOIToDB = {savePOIToServer}
         onDeletePOIFromDB = {deleteSavedPOI}
-        onListOfVisited = {showSavedPOIs}
         visitedDB = {visitedBD}
         />
       </>

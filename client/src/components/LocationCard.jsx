@@ -1,30 +1,23 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import LocationDetailsPage from "./LocationDetailsPage";
-export default function LocationCard({POIList, setSeclectedPOI, setCurrentPage, currentPage, onSavePOIToDB, onDeletePOIFromDB, onListOfVisited, visitedDB}) {
-  async function waitVisitedDB() {
-    const visitedList = await visitedDB;
-    return visitedList;
-  }
-  console.log(POIList)
-  console.log(waitVisitedDB());
+export default function LocationCard({POIList, setSeclectedPOI, setCurrentPage, currentPage, onSavePOIToDB, onDeletePOIFromDB, visitedDB}) {
+  const POIListWithCheckmarks = [];
 
-/*   const POIListWithCheckmarks = POIList.map(poi => {
-    if (visitedDB.find(visited => {
-      visited.xid === poi.xid;
-    })) {
-      return {
-        ...poi,
-        visited: true,
-      }
-    } else {
-      return {
-        ...poi,
-        visited: false,
+  for (const poi of POIList) {
+    POIListWithCheckmarks.push({
+      ...poi,
+      visited: false,
+    });
+  }
+
+  for (const visited of visitedDB) {
+    for (const poi of POIListWithCheckmarks) {
+      if (poi.xid === visited.xid) {
+        poi.visited = true;
       }
     }
-  })
-  console.log(POIListWithCheckmarks); */
+  }
 
   function clickForDetails(id){
     const chosenPOI = POIList.find(POI => POI.xid === id);
@@ -34,7 +27,6 @@ export default function LocationCard({POIList, setSeclectedPOI, setCurrentPage, 
 
   function handlePoiInDB(e, feature) {
     if (e.target.checked) {
-      console.log(feature);
       onSavePOIToDB(feature, 'visited', 3);
     }
     if (!e.target.checked) {
@@ -45,11 +37,14 @@ export default function LocationCard({POIList, setSeclectedPOI, setCurrentPage, 
   return (    
     <>
     <div className="location-container">
-      {POIList.map((feature, index) =>{
+      {POIListWithCheckmarks.map((feature, index) =>{
       return(
       <div className="location-card" key={index}>
       <label className="container">Visited
-        <input type="checkbox" onClick={(e)=>{handlePoiInDB(e, feature)}}></input>
+        {feature.visited
+          ? <input type="checkbox" defaultChecked onClick={(e)=>{handlePoiInDB(e, feature)}}></input>
+          : <input type="checkbox" onClick={(e)=>{handlePoiInDB(e, feature)}}></input>
+        }
         <span className="checkmark"></span>
       </label>
         <div id={feature.xid} className='border' onClick={(e)=>{clickForDetails(e.target.parentNode.id)}}>
