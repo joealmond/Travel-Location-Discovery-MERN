@@ -18,8 +18,7 @@ export default function LocationCard({POIList, setSeclectedPOI, setCurrentPage, 
       }
     }
   }
-
-  function clickForDetails(id){
+  function clickForDetails(id) {
     const chosenPOI = POIList.find(POI => POI.xid === id);
     setSeclectedPOI(chosenPOI);
     setCurrentPage('details') //added for conditional rendering based on this value

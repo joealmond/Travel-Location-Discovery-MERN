@@ -29,8 +29,21 @@ app.use(function (req, res, next) {
   })
 
   app.get('/visited', async (req, res) => {
-    const visitedPOIs = await VisitedPOI.find({})
-    res.send(visitedPOIs)
+    try {
+      const visitedPOIs = await VisitedPOI.find()
+      res.send(visitedPOIs)
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
+  app.get('/wished', async (req, res) => {
+    try {
+        const wishedPois = await VisitedPOI.find({listType: "wished"});
+        res.send(wishedPois)
+    } catch (error) {
+      console.log(error)
+    }
   })
 
   app.post('/visited', (req, res) => {
