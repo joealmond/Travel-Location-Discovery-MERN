@@ -25,14 +25,7 @@
   width: calc(30rem + 10vw);
 }
 
-.navHeader > div:hover {
-  cursor: pointer;
-}
-
-.navHeader > div:hover {
-  cursor: pointer;
-  box-shadow: rgba(255, 255, 255, 0.15) 1.95px 1.95px 2.6px;
-}
+/*  */
 
 .navHeader button {
   height: 1.5rem;

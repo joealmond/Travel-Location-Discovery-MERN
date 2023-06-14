@@ -19,15 +19,15 @@
     padding: 0.5rem 0;
 }
 
-.navHeader > div:hover,
+/* .navHeader > div:hover,*/
 .navHeader > div p:hover {
     cursor: pointer;
 }
-
+/*
 .navHeader > div:hover {
     cursor: pointer;
     box-shadow: cadetblue 1.95px 1.95px 2.6px;
-}
+} */
 .navHeader > div:nth-of-type(2),
 .navHeader > div:nth-of-type(1) {
     font-size: x-large;

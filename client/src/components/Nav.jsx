@@ -13,8 +13,8 @@ function Nav({ onFormSubmit, setSearchInput, searchInput, setCurrentPage }) {
       <Link to="visited"><div onClick={() => setCurrentPage("visited")}>
         <p>Visited</p>
       </div></Link>
-      <div onClick={() => setCurrentPage("wishlist")}>
-        <p>Wish-list</p>
+      <div>
+        
       </div>
       <div>
         <Search
